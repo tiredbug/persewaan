@@ -41,7 +41,7 @@ class m_produk extends CI_Model {
 		$data['total_data']=$this->db->count_all_results();
 		return $data;
 	}
-	public function tampil_produk_pilhan()
+	public function tampil_produk_pilihan()
 	{
 		$this->db->select(["id_produk", "nama"])
 			->from($this->table);

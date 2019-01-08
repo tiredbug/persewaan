@@ -11,12 +11,12 @@ $this->load->view('_partials/sidebar');
         <!-- Content Header (Page header) -->
         <section class="content-header">
           <h1>
-  Harga
-  <small>Master Data Harga</small>
+  Karyawan
+  <small>Master Data Karyawan</small>
   </h1>
           <ol class="breadcrumb">
             <li><a href="index"><i class="fa fa-dashboard"></i> Home</a></li>
-            <li class="active">Harga</li>
+            <li class="active">karyawan</li>
           </ol>
         </section>
 
@@ -27,7 +27,7 @@ $this->load->view('_partials/sidebar');
               <div class="box">
                 <div class="box-header">
                   <h3 class="box-title">
-                    <a href="<?php echo base_url('harga/tambah'); ?>" class="btn btn-sm btn-primary btn-flat"><i class="fa fa-edit"></i> Tambah</a>
+                    <a href="<?php echo base_url('karyawan/tambah'); ?>" class="btn btn-sm btn-primary btn-flat"><i class="fa fa-edit"></i> Tambah</a>
                   </h3>
                   <div class="box-tools">
                     
@@ -43,34 +43,41 @@ $this->load->view('_partials/sidebar');
               <table class="table table-hover datatable"  width="100%" cellspacing="0">
                 <thead>
                   <tr>
-                    <th width="150">ID Harga</th>
-                    <th width="150">ID Produk</th>
-                    <th width="150">ID Paket</th>
-                    <th>Harga</th>
+                    <th width="150">ID Karyawan</th>
+                    <th>Nama</th>
+                    <th>ID User</th>
+                    <th>Alamat</th>
+                    <th>No HP</th>
+                    <th>Jabatan</th>
                     <th width="200px">Action</th>
                   </tr>
                 </thead>
                 <tbody>
-                  <?php foreach ($result as $harga): ?>
+                  <?php foreach ($result as $karyawan): ?>
                   <tr>
                     <td >
-                      <?php echo $harga->id_harga ?>
+                      <?php echo $karyawan->id_karyawan ?>
                     </td>
                     <td >
-                      <?php echo $harga->id_produk ?>
-                    </td>
-                    <td >
-                      <?php echo $harga->id_paket ?>
+                      <?php echo $karyawan->nama ?>
                     </td>
                     <td>
-                      <?php echo $harga->harga ?>
+                      <?php echo $karyawan->id_user ?>
+                    </td>
+                    <td>
+                      <?php echo $karyawan->alamat ?>
+                    </td>
+                    <td>
+                      <?php echo $karyawan->no_hp ?>
+                    </td>
+                    <td>
+                      <?php echo $karyawan->jabatan ?>
                     </td>
                     
-                    
                     <td>
-                      <a href="<?php echo base_url('harga/ubah/'.$harga->id_harga) ?>"
+                      <a href="<?php echo base_url('karyawan/ubah/'.$karyawan->id_karyawan) ?>"
                        class="btn btn-sm btn-primary btn-flat"><i class="fa fa-edit"></i> Edit</a>
-                      <button onclick="deleteConfirm('<?php echo base_url('harga/delete/'.$harga->id_harga) ?>')"
+                      <button onclick="deleteConfirm('<?php echo base_url('karyawan/delete/'.$karyawan->id_karyawan) ?>')"
                        href="" class="btn btn-sm btn-danger btn-flat"><i class="fa fa-trash"></i> Hapus </button>
                     </td>
                     

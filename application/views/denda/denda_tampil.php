@@ -11,12 +11,12 @@ $this->load->view('_partials/sidebar');
 <!-- Content Header (Page header) -->
 <section class="content-header">
   <h1>
-  Paket
-  <small>Master Data Paket</small>
+  Denda
+  <small>Master Data Denda</small>
   </h1>
   <ol class="breadcrumb">
     <li><a href="index"><i class="fa fa-dashboard"></i> Home</a></li>
-    <li class="active">Paket</li>
+    <li class="active">Denda</li>
   </ol>
 </section>
 <!-- Main content -->
@@ -26,7 +26,7 @@ $this->load->view('_partials/sidebar');
       <div class="box">
         <div class="box-header">
           <h3 class="box-title">
-          <a href="<?php echo base_url('paket/tambah'); ?>" class="btn btn-sm btn-primary btn-flat"><i class="fa fa-edit"></i> Tambah</a>
+          <a href="<?php echo base_url('denda/tambah'); ?>" class="btn btn-sm btn-primary btn-flat"><i class="fa fa-edit"></i> Tambah</a>
           </h3>
           <div class="box-tools">
             
@@ -42,29 +42,33 @@ $this->load->view('_partials/sidebar');
                   <table class="table table-hover datatable"  width="100%" cellspacing="0">
                     <thead>
                       <tr>
-                        <th width="150">ID paket</th>
-                        <th>Nama</th>
-                        <th>Durasi</th>
+                        <th width="150">ID Denda</th>
+                        <th>Nama Denda</th>
+                        <th>Harga</th>
+                        <th>Keterangan</th>
                         <th width="200px">Action</th>
                       </tr>
                     </thead>
                     <tbody>
-                      <?php foreach ($result as $paket): ?>
+                      <?php foreach ($result as $denda): ?>
                       <tr>
                         <td >
-                          <?php echo $paket->id_paket ?>
+                          <?php echo $denda->id_denda ?>
                         </td>
                         <td>
-                          <?php echo $paket->nama ?>
+                          <?php echo $denda->nama ?>
                         </td>
                         <td>
-                          <?php echo $paket->durasi ?>
+                          <?php echo $denda->harga ?>
+                        </td>
+                        <td>
+                          <?php echo $denda->keterangan ?>
                         </td>
                         
                         <td>
-                          <a href="<?php echo base_url('paket/ubah/'.$paket->id_paket) ?>"
+                          <a href="<?php echo base_url('denda/ubah/'.$denda->id_denda) ?>"
                           class="btn btn-sm btn-primary btn-flat"><i class="fa fa-edit"></i> Edit</a>
-                          <button onclick="deleteConfirm('<?php echo base_url('paket/delete/'.$paket->id_paket) ?>')"
+                          <button onclick="deleteConfirm('<?php echo base_url('denda/delete/'.$denda->id_denda) ?>')"
                           href="" class="btn btn-sm btn-danger btn-flat"><i class="fa fa-trash"></i> Hapus </button>
                         </td>
                         

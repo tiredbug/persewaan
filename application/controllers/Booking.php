@@ -9,6 +9,8 @@ class Booking extends CI_Controller {
 			redirect(site_url('auth'));
 		}
 		$this->load->model('m_booking', 'mod');
+		$this->load->model('m_customer');
+		$this->load->model('m_produk');
 	}
 
 
@@ -27,6 +29,9 @@ class Booking extends CI_Controller {
 	{
 		$data['title']='Tambah booking';
 		$data['kodeunik'] = $this->mod->buat_kode();
+		$data['result_customer_pilihan'] = $this->m_customer->tampil_customer_pilihan()['result'];
+		$data['result_produk_pilihan'] = $this->m_produk->tampil_produk_pilihan()['result'];
+		// print_r($data);
 		$this->parser->parse('booking/booking_tambah', $data);
 	}
 
@@ -37,6 +42,7 @@ class Booking extends CI_Controller {
 			"nama"	=> $this->input->post('nama'),
 			
 		];
+		$this->session->set_userdata('user_id');
 
 		$this->mod->tambah_booking($data);
 		redirect(site_url('booking'));

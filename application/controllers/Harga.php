@@ -11,6 +11,7 @@ class Harga extends CI_Controller {
 		$this->load->helper('form');
 		$this->load->model('m_harga', 'mod');
 		$this->load->model('m_paket');
+		$this->load->model('m_produk');
 		
 	}
 
@@ -31,9 +32,9 @@ class Harga extends CI_Controller {
 	{
 		$this->load->model('m_paket');
 		$data['title']='Tambah harga';
-		$this->load->library('form_validation');
-		$this->form_validation->set_rules('id_produk','id_produk','required');
+		
 		$data['kodeunik'] = $this->mod->buat_kode();
+		$data['result_produk_pilihan'] = $this->m_produk->tampil_produk_pilihan()['result'];
 		$data['result_paket_pilihan'] = $this->m_paket->tampil_paket_pilihan()['result'];
 		//print_r($data); exit();
 

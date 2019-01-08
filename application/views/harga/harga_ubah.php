@@ -10,9 +10,9 @@ $this->load->view('_partials/sidebar');
 <!-- Content Header (Page header) -->
 <section class="content-header">
     <h1>
-        Form Edit Harga
-        <small>it all starts here</small>
-    </h1>
+  Harga
+  <small>Master Data Harga</small>
+  </h1>
     <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
         <li><a href="#">Master Data</a></li>

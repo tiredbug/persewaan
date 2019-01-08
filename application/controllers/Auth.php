@@ -28,7 +28,18 @@ class Auth extends CI_Controller {
 				$sess_data['hak_akses'] = $hasil->hak_akses;
 				$this->session->set_userdata($sess_data);
 
-				redirect('dashboard');
+				if ($hasil->hak_akses == 'Super Admin') {
+					# code...
+					redirect('dashboard');
+				}
+				elseif ($hasil->hak_akses == 'Gudang') {
+					# code...
+					redirect('dashboard2');
+				}
+				else {
+					
+				redirect('dashboard3');
+				}
 		}
 		else {
 			echo "<script>alert('Gagal login: Cek username, password!');history.go(-1);</script>";

@@ -12,7 +12,7 @@ $this->load->view('_partials/sidebar');
 <section class="content-header">
 	<h1>
 	Produk
-	<small>Control panel</small>
+	<small>Master Data Produk</small>
 	</h1>
 	<ol class="breadcrumb">
 		<li><a href="index"><i class="fa fa-dashboard"></i> Home</a></li>
