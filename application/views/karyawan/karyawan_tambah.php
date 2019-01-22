@@ -10,7 +10,7 @@ $this->load->view('_partials/sidebar');
 <section class="content-header">
   <h1>
   Karyawan
-  <small>Master Data Karyawan</small>
+  <small>Master Data</small>
   </h1>
   <ol class="breadcrumb">
     <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
@@ -46,7 +46,7 @@ $this->load->view('_partials/sidebar');
       </div>
       <div class="form-group">
         <label for="exampleInputEmail1"">Jabatan</label>
-        <select name="jabatan" class="form-control" id="jabatan">
+        <select name="jenis_id" class="form-control" id="jenis_id">
           <option>Pilih Jabatan</option>
           <option>Pegawai</option>
           <option>SPV</option>

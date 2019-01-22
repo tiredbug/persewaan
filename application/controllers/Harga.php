@@ -46,7 +46,7 @@ class Harga extends CI_Controller {
 		$data=[
 			"id_harga"	=> $this->input->post('id_harga'),
 			"id_produk"	=> $this->input->post('id_produk'),
-			"id_paket"	=> $this->input->post('id_paket'),
+			"durasi"	=> $this->input->post('durasi'),
 			"harga"	=> $this->input->post('harga'),
 			
 			
@@ -68,7 +68,7 @@ class Harga extends CI_Controller {
 		$data=[
 			"id_harga"	=> $this->input->post('id_harga'),
 			"id_produk"	=> $this->input->post('id_produk'),
-			"id_paket"	=> $this->input->post('id_paket'),
+			"durasi"	=> $this->input->post('durasi'),
 			"harga"	=> $this->input->post('harga'),
 		];
 

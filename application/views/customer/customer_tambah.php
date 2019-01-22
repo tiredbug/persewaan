@@ -8,14 +8,14 @@ $this->load->view('_partials/sidebar');
 ?>
 <!-- Content Header (Page header) -->
 <section class="content-header">
-   <h1>
+  <h1>
   Customer
-  <small>Master Data Customer</small>
+  <small>Master Data</small>
   </h1>
   <ol class="breadcrumb">
     <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
     <li><a href="#">Examples</a></li>
-    <li class="active">Customer</li>
+    <li class="active">Blank page</li>
   </ol>
 </section>
 <!-- Main content -->

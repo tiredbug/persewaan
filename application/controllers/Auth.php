@@ -32,7 +32,7 @@ class Auth extends CI_Controller {
 					# code...
 					redirect('dashboard');
 				}
-				elseif ($hasil->hak_akses == 'Gudang') {
+				elseif ($hasil->hak_akses == 'Pegawai') {
 					# code...
 					redirect('dashboard2');
 				}

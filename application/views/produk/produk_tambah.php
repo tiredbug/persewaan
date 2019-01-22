@@ -50,12 +50,12 @@ $this->load->view('_partials/sidebar');
       </div>
       <div class="form-group">
         <label for="exampleInputEmail1">Jumlah</label>
-        <input type="text" class="form-control" id="jumlah" name="jumlah" placeholder="">
+        <input type="number" class="form-control" id="jumlah" name="jumlah" placeholder="">
       </div>
-      <div class="form-group">
+      <!-- <div class="form-group">
         <label for="exampleInputEmail1">Stok</label>
         <input type="text" class="form-control" id="stok" name="stok" placeholder="">
-      </div>
+      </div> -->
       <div class="form-group">
         <label for="exampleInputEmail1">Status</label>
           <select name="status" class="form-control" id="status">

@@ -8,9 +8,9 @@ $this->load->view('_partials/sidebar');
 ?>
 <!-- Content Header (Page header) -->
 <section class="content-header">
- <h1>
-  Harga
-  <small>Master Data Harga</small>
+  <h1>
+  Form Tambah Harga
+  <small>Master Data</small>
   </h1>
   <ol class="breadcrumb">
     <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
@@ -48,17 +48,14 @@ $this->load->view('_partials/sidebar');
         <!--  <?php
         print_r($result_Harga_pilihan);
         ?> -->
-        <label for="id_paket" class="control-label">ID Paket</label>
+        <label for="id_paket" class="control-label">Durasi (Lama Sewa)</label>
         <div class="form-group">
-          <select class="form-control" name="id_paket">
-            <option>Pilih Paket</option>
-            <?php
-            foreach($result_paket_pilihan as $row)
-            {
-            echo '<option value="'.$row['id_paket'].'">'.$row['nama'].'</option>';
-            }
-            ?>
-          </select>
+          <select name="durasi" class="form-control" id="durasi">
+          <option>Pilih Durasi</option>
+          <option>6 Jam</option>
+          <option>12 Jam</option>
+          <option>24 Jam</option>
+        </select>
         </div>
       </div>
       <div class="form-group">

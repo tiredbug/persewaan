@@ -16,24 +16,23 @@ CREATE DATABASE /*!32312 IF NOT EXISTS*/`iframe` /*!40100 DEFAULT CHARACTER SET 
 
 USE `iframe`;
 
-/*Table structure for table `booking` */
+/*Table structure for table `cart` */
 
-DROP TABLE IF EXISTS `booking`;
+DROP TABLE IF EXISTS `cart`;
 
-CREATE TABLE `booking` (
-  `id_booking` varchar(50) NOT NULL,
-  `id_karyawan` varchar(50) NOT NULL,
-  `tgl_transaksi` date NOT NULL,
-  `id_customer` varchar(50) NOT NULL,
+CREATE TABLE `cart` (
   `id_produk` varchar(50) NOT NULL,
-  `tgl_pinjam` date NOT NULL,
-  `tgl_kembali` date NOT NULL,
+  `id_paket` varchar(50) NOT NULL,
   `jumlah` int(11) NOT NULL,
-  `status` enum('Verifikasi','Belum Verifikasi') NOT NULL,
-  PRIMARY KEY (`id_booking`)
+  `potongan` double NOT NULL,
+  `biaya` double NOT NULL,
+  `subtotal` double NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
-/*Data for the table `booking` */
+/*Data for the table `cart` */
+
+insert  into `cart`(`id_produk`,`id_paket`,`jumlah`,`potongan`,`biaya`,`subtotal`) values 
+('1','1',1,1,1,1);
 
 /*Table structure for table `customer` */
 
@@ -51,24 +50,6 @@ CREATE TABLE `customer` (
 
 /*Data for the table `customer` */
 
-insert  into `customer`(`id_customer`,`nama`,`no_id`,`jenis_id`,`alamat`,`no_hp`) values 
-('CUST-1901-0001','Elsa SN',2147483647,'KTM','Bogor, Indonesia',2147483647),
-('CUST-1901-0002','Anisa Fatma',12345678,'BPJS','Mlati, Sleman, Yogyakarta',12345678);
-
-/*Table structure for table `denda` */
-
-DROP TABLE IF EXISTS `denda`;
-
-CREATE TABLE `denda` (
-  `id_denda` varchar(50) NOT NULL,
-  `nama` varchar(50) NOT NULL,
-  `harga` int(11) NOT NULL,
-  `keterangan` text NOT NULL,
-  PRIMARY KEY (`id_denda`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
-/*Data for the table `denda` */
-
 /*Table structure for table `det_pembayaran` */
 
 DROP TABLE IF EXISTS `det_pembayaran`;
@@ -83,40 +64,24 @@ CREATE TABLE `det_pembayaran` (
 
 /*Data for the table `det_pembayaran` */
 
-/*Table structure for table `det_peminjaman` */
+/*Table structure for table `det_sewa` */
 
-DROP TABLE IF EXISTS `det_peminjaman`;
+DROP TABLE IF EXISTS `det_sewa`;
 
-CREATE TABLE `det_peminjaman` (
-  `id_det_peminjaman` int(11) NOT NULL,
-  `id_peminjaman` varchar(50) NOT NULL,
+CREATE TABLE `det_sewa` (
+  `id_det_sewa` int(11) NOT NULL,
+  `id_sewa` varchar(50) NOT NULL,
   `id_produk` varchar(50) NOT NULL,
   `id_paket` varchar(50) NOT NULL,
   `jumlah` int(11) NOT NULL,
   `potongan` double NOT NULL,
   `biaya` double NOT NULL,
   `subtotal` double NOT NULL,
-  PRIMARY KEY (`id_det_peminjaman`)
+  `status` enum('Booking','Pinjam','Kembali','Batal') NOT NULL DEFAULT 'Booking',
+  PRIMARY KEY (`id_det_sewa`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
-/*Data for the table `det_peminjaman` */
-
-/*Table structure for table `det_pengembalian` */
-
-DROP TABLE IF EXISTS `det_pengembalian`;
-
-CREATE TABLE `det_pengembalian` (
-  `id_det_pengembalian` int(11) NOT NULL,
-  `id_pengembalian` varchar(50) NOT NULL,
-  `denda` double NOT NULL,
-  `harga_denda` double NOT NULL,
-  `lebih_durasi` int(11) NOT NULL,
-  `total_bayar` double NOT NULL,
-  `keterangan` text NOT NULL,
-  PRIMARY KEY (`id_det_pengembalian`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
-/*Data for the table `det_pengembalian` */
+/*Data for the table `det_sewa` */
 
 /*Table structure for table `harga` */
 
@@ -131,11 +96,6 @@ CREATE TABLE `harga` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 /*Data for the table `harga` */
-
-insert  into `harga`(`id_harga`,`id_produk`,`id_paket`,`harga`) values 
-('HRG-1901-0001','PRDK-1901-0001','PKT-1901-0001',90000),
-('HRG-1901-0002','PRDK-1901-0001','PKT-1901-0002',135000),
-('HRG-1901-0003','PRDK-1901-0001','PKT-1901-0003',180000);
 
 /*Table structure for table `karyawan` */
 
@@ -153,10 +113,6 @@ CREATE TABLE `karyawan` (
 
 /*Data for the table `karyawan` */
 
-insert  into `karyawan`(`id_karyawan`,`nama`,`id_user`,`alamat`,`no_hp`,`jabatan`) values 
-('KY-1901-0001','Elsa Serli Nabila','elsasn','Bogor, Indonesia',2147483647,'Pegawai'),
-('KY-1901-0002','Harry Mahardika','harry','Yogyakarta',12345678,'SPV');
-
 /*Table structure for table `kategori` */
 
 DROP TABLE IF EXISTS `kategori`;
@@ -168,10 +124,6 @@ CREATE TABLE `kategori` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 /*Data for the table `kategori` */
-
-insert  into `kategori`(`id_kategori`,`nama`) values 
-('KTG-1901-0001','Kamera Foto'),
-('KTG-1901-0002','GoPro/Xiaomi/ActionCam');
 
 /*Table structure for table `paket` */
 
@@ -186,18 +138,13 @@ CREATE TABLE `paket` (
 
 /*Data for the table `paket` */
 
-insert  into `paket`(`id_paket`,`nama`,`durasi`) values 
-('PKT-1901-0001','Paket 6 Jam','6 Jam'),
-('PKT-1901-0002','Paket 12 Jam','12 Jam'),
-('PKT-1901-0003','Paket 24 Jam','24 Jam');
-
 /*Table structure for table `pembayaran` */
 
 DROP TABLE IF EXISTS `pembayaran`;
 
 CREATE TABLE `pembayaran` (
   `id_pembayaran` varchar(50) NOT NULL,
-  `id_booking` varchar(50) NOT NULL,
+  `id_sewa` varchar(50) NOT NULL,
   `subtotal` int(11) NOT NULL,
   `jumlah_bayar` int(11) NOT NULL,
   `jenis_bayar` int(11) NOT NULL,
@@ -206,38 +153,6 @@ CREATE TABLE `pembayaran` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 /*Data for the table `pembayaran` */
-
-/*Table structure for table `peminjaman` */
-
-DROP TABLE IF EXISTS `peminjaman`;
-
-CREATE TABLE `peminjaman` (
-  `id_peminjaman` varchar(50) NOT NULL,
-  `id_booking` varchar(50) NOT NULL,
-  `id_karyawan` varchar(50) NOT NULL,
-  `tgl_transaksi` date NOT NULL,
-  `id_customer` varchar(50) NOT NULL,
-  `tgl_pinjam` date NOT NULL,
-  `tgl_kembali` date NOT NULL,
-  `total_bayar` int(11) NOT NULL,
-  PRIMARY KEY (`id_peminjaman`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
-/*Data for the table `peminjaman` */
-
-/*Table structure for table `pengembalian` */
-
-DROP TABLE IF EXISTS `pengembalian`;
-
-CREATE TABLE `pengembalian` (
-  `id_pengembalian` varchar(50) NOT NULL,
-  `id_peminjaman` varchar(50) NOT NULL,
-  `tgl_pengembalian` date NOT NULL,
-  `subtotal` double NOT NULL,
-  PRIMARY KEY (`id_pengembalian`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
-/*Data for the table `pengembalian` */
 
 /*Table structure for table `produk` */
 
@@ -255,9 +170,23 @@ CREATE TABLE `produk` (
 
 /*Data for the table `produk` */
 
-insert  into `produk`(`id_produk`,`nama`,`id_kategori`,`jumlah`,`stok`,`status`) values 
-('PRDK-1901-0001','Canon DSLR 7D BO','KTG-1901-0001',10,10,'Milik Sendiri'),
-('PRDK-1901-0002','Canon DSLR 60D BO','KTG-1901-0001',10,10,'Milik Sendiri');
+/*Table structure for table `sewa` */
+
+DROP TABLE IF EXISTS `sewa`;
+
+CREATE TABLE `sewa` (
+  `id_sewa` varchar(50) NOT NULL,
+  `id_karyawan` varchar(50) NOT NULL,
+  `tgl_transaksi` date NOT NULL,
+  `id_customer` varchar(50) NOT NULL,
+  `tgl_pinjam` date NOT NULL,
+  `tgl_kembali` date NOT NULL,
+  `dp` int(11) NOT NULL,
+  `subtotal` int(11) NOT NULL,
+  PRIMARY KEY (`id_sewa`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+/*Data for the table `sewa` */
 
 /*Table structure for table `users` */
 
@@ -282,7 +211,7 @@ CREATE TABLE `users` (
 /*Data for the table `users` */
 
 insert  into `users`(`id_user`,`username`,`nama_user`,`password`,`email`,`telepon`,`foto`,`hak_akses`,`status`,`created_at`,`updated_at`) values 
-(1,'superadmin','Elsa Serli Nabila','17c4520f6cfd1ab53d8745e84681eb49','elsa@gmail.com','12345678','user-default.png','Super Admin','aktif','2017-04-01 15:15:15','2019-01-08 05:21:13'),
+(1,'indrasatya','Indra Setyawantoro','41504508b3cec65b1313905001118579','indra.styawantoro@gmail.com','085669919769','indrasatya.jpg','Super Admin','aktif','2017-04-01 15:15:15','2017-04-01 15:15:15'),
 (2,'kadina','Kadina Putri','202cb962ac59075b964b07152d234b70','kadinaputri@gmail.com','085680892909','kadina.png','Manajer','aktif','2017-04-01 15:15:15','2017-04-01 15:15:15'),
 (3,'danang','Danang Kesuma','202cb962ac59075b964b07152d234b70','danang@gmail.com','085758858855','','Gudang','aktif','2017-04-01 15:15:15','2017-04-01 15:15:15');
 

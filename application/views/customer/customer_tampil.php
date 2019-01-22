@@ -10,10 +10,10 @@ $this->load->view('_partials/sidebar');
 <!-- Content Header (Page header) -->
         <!-- Content Header (Page header) -->
         <section class="content-header">
-         <h1>
-  Customer
-  <small>Master Data Customer</small>
-  </h1>
+          <h1>
+            Customer
+            <small>Control panel</small>
+          </h1>
           <ol class="breadcrumb">
             <li><a href="index"><i class="fa fa-dashboard"></i> Home</a></li>
             <li class="active">Customer</li>

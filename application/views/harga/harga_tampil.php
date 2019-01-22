@@ -11,9 +11,9 @@ $this->load->view('_partials/sidebar');
         <!-- Content Header (Page header) -->
         <section class="content-header">
           <h1>
-  Harga
-  <small>Master Data Harga</small>
-  </h1>
+            Harga
+            <small>Control panel</small>
+          </h1>
           <ol class="breadcrumb">
             <li><a href="index"><i class="fa fa-dashboard"></i> Home</a></li>
             <li class="active">Harga</li>
@@ -45,8 +45,8 @@ $this->load->view('_partials/sidebar');
                   <tr>
                     <th width="150">ID Harga</th>
                     <th width="150">ID Produk</th>
-                    <th width="150">ID Paket</th>
-                    <th>Harga</th>
+                    <th width="150">Durasi (Lama Sewa)</th>
+                    <th width="150">Harga</th>
                     <th width="200px">Action</th>
                   </tr>
                 </thead>
@@ -60,7 +60,7 @@ $this->load->view('_partials/sidebar');
                       <?php echo $harga->id_produk ?>
                     </td>
                     <td >
-                      <?php echo $harga->id_paket ?>
+                      <?php echo $harga->durasi ?>
                     </td>
                     <td>
                       <?php echo $harga->harga ?>

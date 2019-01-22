@@ -33,8 +33,10 @@ class m_produk extends CI_Model {
 
 	public function tampil_produk()
 	{
-		$this->db->select(["id_produk","id_kategori", "nama","id_produk","jumlah","stok","status"])
-			->from($this->table);
+		$this->db->select(["produk.id_produk","produk.id_kategori", "produk.nama","produk.id_produk","produk.jumlah","produk.status","kategori.nama as nama_kategori"])
+			->from('produk')
+			->join('kategori','produk.id_kategori=kategori.id_kategori');
+		
 		$query=$this->db->get_compiled_select();
 
 		$data['result']=$this->db->query($query)->result();

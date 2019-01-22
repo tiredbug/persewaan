@@ -9,19 +9,18 @@ $this->load->view('_partials/sidebar');
 <!-- Content Header (Page header) -->
 <section class="content-header">
   <h1>
-  Produk
-  <small>Master Data</small>
+  Blank page
+  <small>it all starts here</small>
   </h1>
   <ol class="breadcrumb">
     <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
     <li><a href="#">Examples</a></li>
-    <li class="active">Produk</li>
+    <li class="active">Blank page</li>
   </ol>
 </section>
 <!-- Main content -->
 <section class="content">
   <!-- Default box -->
-  <div class="box">
   <form method="post" action="<?php echo base_url('produk/ubah_proses') ?>">
     {result}
     <div class="box-body">
@@ -77,7 +76,6 @@ $this->load->view('_partials/sidebar');
     </div>
     {/result}
   </form>
-</div>
   </section><!-- /.content -->
   <?php
   $this->load->view('_partials/js');

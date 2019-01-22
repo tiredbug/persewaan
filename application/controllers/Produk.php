@@ -40,7 +40,7 @@ class Produk extends CI_Controller {
 			"nama"	=> $this->input->post('nama'),
 			"id_kategori"	=> $this->input->post('id_kategori'),
 			"jumlah"	=> $this->input->post('jumlah'),
-			"stok"	=> $this->input->post('stok'),
+			// "stok"	=> $this->input->post('stok'),
 			"status"	=> $this->input->post('status'),
 		];
 		//print_r($_POST);
@@ -61,7 +61,7 @@ class Produk extends CI_Controller {
 			"nama"	=> $this->input->post('nama'),
 			"id_produk"	=> $this->input->post('id_produk'),
 			"jumlah"	=> $this->input->post('jumlah'),
-			"stok"	=> $this->input->post('stok'),
+			// "stok"	=> $this->input->post('stok'),
 			"status"	=> $this->input->post('status'),
 
 		];

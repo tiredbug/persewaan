@@ -736,7 +736,7 @@ class CI_Form_validation {
 					}
 				}
 
-				// Re-assign the result to the Control Panel array
+				// Re-assign the result to the master data array
 				if ($_in_array === TRUE)
 				{
 					$this->_field_data[$row['field']]['postdata'][$cycles] = is_bool($result) ? $postdata : $result;

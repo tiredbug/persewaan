@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>IFRAME MULTIMEDIA | Dashboard</title>
+  <title>AdminLTE 2 | Dashboard</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.7 -->
@@ -27,3 +27,17 @@
   <link rel="stylesheet" href="<?php echo base_url('assets/bower_components/bootstrap-daterangepicker/daterangepicker.css'); ?>">
   <!-- bootstrap wysihtml5 - text editor -->
   <link rel="stylesheet" href="<?php echo base_url('assets/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css'); ?>">
+  <!-- <script src="assets/dist/js/sweetalert.min.js"></script>  --><!-- lib js untuk sweet alert -->    
+    <style>
+      body{
+      width: 100%;
+      height: 800px;
+      margin: 10px auto;
+      };  
+      section{
+        width: 900px;
+      };
+      form .button-group{
+        text-align: right;
+      }   
+    </style> 

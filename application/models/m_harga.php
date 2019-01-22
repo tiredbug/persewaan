@@ -33,11 +33,24 @@ class m_harga extends CI_Model {
 
 	public function tampil_harga()
 	{
-		$this->db->select(["id_harga", "id_produk","id_paket","harga"])
+		$this->db->select(["id_harga", "id_produk","durasi","harga"])
 			->from($this->table);
 		$query=$this->db->get_compiled_select();
 
 		$data['result']=$this->db->query($query)->result();
+		$data['total_data']=$this->db->count_all_results();
+		return $data;
+	}
+
+	public function tampil_harga_pilihan()
+	{
+		$this->db->select('*')
+			->from('produk')
+			->join('harga','harga.id_produk = produk.id_produk');
+
+		$query=$this->db->get_compiled_select();
+
+		$data['result']=$this->db->query($query)->result_array();
 		$data['total_data']=$this->db->count_all_results();
 		return $data;
 	}

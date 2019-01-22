@@ -11,12 +11,12 @@ $this->load->view('_partials/sidebar');
 <!-- Content Header (Page header) -->
 <section class="content-header">
   <h1>
-  Booking
-  <small>Master Data</small>
+  Sewa
+  <small>Control panel</small>
   </h1>
   <ol class="breadcrumb">
     <li><a href="index"><i class="fa fa-dashboard"></i> Home</a></li>
-    <li class="active">Booking</li>
+    <li class="active">Sewa</li>
   </ol>
 </section>
 <!-- Main content -->
@@ -26,7 +26,7 @@ $this->load->view('_partials/sidebar');
       <div class="box">
         <div class="box-header">
           <h3 class="box-title">
-          <a href="<?php echo base_url('booking/tambah'); ?>" class="btn btn-sm btn-primary btn-flat"><i class="fa fa-edit"></i> Tambah</a>
+          <a href="<?php echo base_url('sewa/tambah'); ?>" class="btn btn-sm btn-primary btn-flat"><i class="fa fa-edit"></i> Tambah</a>
           </h3>
           <div class="box-tools">
             
@@ -42,46 +42,54 @@ $this->load->view('_partials/sidebar');
                   <table class="table table-hover datatable"  width="100%" cellspacing="0">
                     <thead>
                       <tr>
-                        <th width="150">ID booking</th>
+                        <th width="150">ID sewa</th>
                         <th width="150">ID Karyawan</th>
                         <th width="150">Tgl Transaksi</th>
                         <th width="150">ID Customer</th>
                         <th width="150">Tgl Pinjam</th>
                         <th width="150">Tgl Kembali</th>
+                        <th width="150">Down Payment (DP)</th>
+                        <th width="150">Subtotal</th>
                         <th width="150">Status</th>
                         
                         <th width="200px">Action</th>
                       </tr>
                     </thead>
                     <tbody>
-                      <?php foreach ($result as $booking): ?>
+                      <?php foreach ($result as $sewa): ?>
                       <tr>
                         <td >
-                          <?php echo $booking->id_booking ?>
+                          <?php echo $sewa->id_sewa ?>
                         </td>
                         <td >
-                          <?php echo $booking->id_karyawan ?>
+                          <?php echo $sewa->id_karyawan ?>
                         </td>
                         <td >
-                          <?php echo $booking->tgl_transaksi ?>
+                          <?php echo $sewa->tgl_transaksi ?>
                         </td>
                         <td >
-                          <?php echo $booking->id_customer ?>
+                          <?php echo $sewa->id_customer ?>
                         </td>
                         <td >
-                          <?php echo $booking->tgl_pinjam ?>
+                          <?php echo $sewa->tgl_pinjam ?>
                         </td>
                         <td >
-                          <?php echo $booking->tgl_kembali ?>
+                          <?php echo $sewa->tgl_kembali ?>
+                        </td>
+                        <td >
+                          <?php echo $sewa->dp ?>
+                        </td>
+                        <td >
+                          <?php echo $sewa->subtotal ?>
                         </td>
                         <td>
-                          <?php echo $booking->status ?>
+                          <?php echo $sewa->status ?>
                         </td>
                         
                         <td>
-                          <a href="<?php echo base_url('booking/ubah/'.$booking->id_booking) ?>"
+                          <a href="<?php echo base_url('sewa/ubah/'.$sewa->id_sewa) ?>"
                           class="btn btn-sm btn-primary btn-flat"><i class="fa fa-edit"></i> Edit</a>
-                          <button onclick="deleteConfirm('<?php echo base_url('booking/delete/'.$booking->id_booking) ?>')"
+                          <button onclick="deleteConfirm('<?php echo base_url('sewa/delete/'.$sewa->id_sewa) ?>')"
                           href="" class="btn btn-sm btn-danger btn-flat"><i class="fa fa-trash"></i> Hapus </button>
                         </td>
                         

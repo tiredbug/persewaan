@@ -37,7 +37,6 @@ class Karyawan extends CI_Controller {
 			"nama"	=> $this->input->post('nama'),
 			"id_user"	=> $this->input->post('id_user'),
 			"alamat"	=> $this->input->post('alamat'),
-			"no_hp"	=> $this->input->post('no_hp'),
 			"jabatan"	=> $this->input->post('jabatan'),
 			
 		];
@@ -60,7 +59,6 @@ class Karyawan extends CI_Controller {
 			"nama"	=> $this->input->post('nama'),
 			"id_user"	=> $this->input->post('id_user'),
 			"alamat"	=> $this->input->post('alamat'),
-			"no_hp"	=> $this->input->post('no_hp'),
 			"jabatan"	=> $this->input->post('jabatan'),
 		];
 

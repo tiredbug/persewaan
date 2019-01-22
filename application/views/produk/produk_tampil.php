@@ -12,7 +12,7 @@ $this->load->view('_partials/sidebar');
 <section class="content-header">
 	<h1>
 	Produk
-	<small>Master Data Produk</small>
+	<small>Control panel</small>
 	</h1>
 	<ol class="breadcrumb">
 		<li><a href="index"><i class="fa fa-dashboard"></i> Home</a></li>
@@ -45,8 +45,8 @@ $this->load->view('_partials/sidebar');
 												<th>ID Produk</th>
 												<th>ID Kategori</th>
 												<th>Nama</th>
-												<th>Jumlah</th>
-												<th>Stok</th>
+												<th>Jumlah Yang Dimiliki</th>
+												<!-- <th>Stok</th> -->
 												<th>Status</th>
 												<th>Action</th>
 											</tr>
@@ -58,7 +58,7 @@ $this->load->view('_partials/sidebar');
 													<?php echo $produk->id_produk ?>
 												</td>
 												<td>
-													<?php echo $produk->id_kategori ?>
+													<?php echo $produk->nama_kategori ?>
 												</td>
 												<td>
 													<?php echo $produk->nama ?>
@@ -66,9 +66,9 @@ $this->load->view('_partials/sidebar');
 												<td>
 													<?php echo $produk->jumlah ?>
 												</td>
-												<td>
+												<!-- <td>
 													<?php echo $produk->stok ?>
-												</td>
+												</td> -->
 												<td>
 													<?php echo $produk->status ?>
 												</td>
