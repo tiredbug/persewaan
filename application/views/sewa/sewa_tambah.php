@@ -78,22 +78,22 @@ $this->load->view('_partials/sidebar');
       <!-- /box-header -->
       <!-- view data -->
       <div class="box-body">
-        <table id="tabel_data_pegawai" class="table table-bordered table-striped">
+        <table id="" class="table table-bordered table-striped">
           <thead>
             <tr>
-              <th>ID Produk</th>
-              <th>ID Paket</th>
-              <th>Jam Pinjam</th>
-              <th>Jam Harus Kembali</th>
-              <th>Jam Pengembalian</th>
+              <th>Produk</th>
+              <th>Durasi/Lama Sewa</th>
+              <th>Harga</th>
               <th>Jumlah</th>
               <th>Biaya</th>
-              <th>Subtotal</th>
+              <th>Jam Pinjam</th>
+              <th>Jam Harus Kembali</th>
+              <th>Status</th>
               <th>Action</th>
             </tr>
           </thead>
           <tbody id="table-tbody">
-            
+
           </tbody>
         </table>
         </div><!-- /.box-body -->
@@ -121,16 +121,12 @@ $this->load->view('_partials/sidebar');
                     <?php
                     foreach($result_produk_pilihan as $row)
                     {
-                    echo '<option value="'.$row['id_'].'">'.$row['nama'].'</option>';
+                    echo '<option value="'.$row['id_produk'].'">'.$row['nama'].'</option>';
                     }
                     ?>
                   </select>
                 </div>
                 
-                <!--  <div class="form-group">
-                  <label>Jam Pinjam</label>
-                  <input type="time" class="form-control" name="jumlah" placeholder="">
-                </div> -->
                 <div class="form-group">
                   <label>Durasi/Harga Sewa</label>
                   <select name="id_harga" class="form-control" id="id_harga">
@@ -149,8 +145,17 @@ $this->load->view('_partials/sidebar');
                 </div>
                 <div class="form-group">
                   <label>Biaya</label>
-                  <input type="number" class="form-control" name="biaya" id="jml_biaya" placeholder="">
+                  <input type="number" class="form-control" name="biaya" id="biaya" placeholder="">
                 </div>
+                <div class="form-group">
+                  <label>Tgl Pinjam</label>
+                  <input type="text" class="form-control" id="tgl_pinjam" name="tgl_pinjam">
+                </div>
+                <div class="form-group">
+                  <label>Jam Pinjam</label>
+                  <input type="time" class="form-control" id="jam_pinjam"  min="00:00" max="23:59" name="jam_pinjam">
+                </div>
+                
                 <div class="form-group">
                   <label>Status</label>
                   <select name="status" class="form-control" id="status">
@@ -172,79 +177,59 @@ $this->load->view('_partials/sidebar');
           </div>
         </div>
       </div>
-      <div class="modal fade" id="mymodalupdate" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-              <h4 class="modal-title" id="myModalLabel">Ubah Data Produk</h4>
-            </div>
-            <div class="modal-body">
-              <div class="form-group">
-                <label>ID Produk</label>
-                <input type="text" class="form-control" name="id_produk" placeholder="Nama Lengkap">
-              </div>
-              
-              <div class="form-group">
-                <label>ID Paket</label>
-                <input type="text" class="form-control" name="id_paket" placeholder="Nama Lengkap">
-              </div>
-              <div class="form-group">
-                <label>Jumlah</label>
-                <input type="text" class="form-control" name="jumlah" placeholder="Nama Lengkap">
-              </div>
-              <div class="form-group">
-                <label>Ptotongan</label>
-                <input type="text" class="form-control" name="potongan" placeholder="Nama Lengkap">
-              </div>
-              <div class="form-group">
-                <label>Biaya</label>
-                <input type="text" class="form-control" id="hitung" name="biaya" placeholder="Nama Lengkap">
-              </div>
-              <div class="form-group">
-                <label>Subtotal</label>
-                <input type="text" class="form-control" name="subtotal" placeholder="Nama Lengkap">
-              </div>
-            </div>
-            <div class="modal-footer">
-              <button type="submit" class="btn btn-success" data-dismiss="modal" id = "update_action">Ubah</button>
-              <button type="button" class="btn btn-default" data-dismiss="modal">Batal</button>
-            </div>
-          </div>
-        </div>
-      </div>
+      
       <?php
       $this->load->view('_partials/js');
       ?>
       <?php
       $this->load->view('_partials/footer');
       ?>
+
+    <script src="https://unpkg.com/gijgo@1.9.11/js/gijgo.min.js" type="text/javascript"></script>
+    <link href="https://unpkg.com/gijgo@1.9.11/css/gijgo.min.css" rel="stylesheet" type="text/css" />
       <script>
       $('#add_action').on('click',function (argument) {
       $(this).attr('disabled','disabled');
       var dataForm=$('#add-produk-modal').serialize();
       $.post("<?php echo site_url('sewa/insertToCart')?>",dataForm,function (argument) {
       console.log(argument);
+      loadData();
+      $('#mymodaladd').modal('hide');
       // body...
       })
       })
-      function loadData(args) {
+
+      function hapus(ini){
+        var id=$(ini).data('id_cart');
+        $.get("<?php echo site_url('sewa/deleteCart')?>/"+id,function (argument) {
+        loadData();
+        })
+
+      }
+      function loadData() {
       //code
       $("#table-tbody").load("<?php echo site_url('sewa/tampil');?>");
       }
       loadData();
       
       function myFunction() {
-    var harga = $('#id_harga').val();
-    var jumlah = $('#jumlah').val();
-            var req= $.ajax({
-                url: "<?= base_url('sewa/hitung_otomatis') ?>",
-                type: 'post',
-                data: {id_harga:harga,jumlah:jumlah},
-                dataType: 'json', 
-            })
-            req.done(function(data) {
-                  $('#jml_biaya').val(data);
-            })
+      var harga = $('#id_harga').val();
+      var jumlah = $('#jumlah').val();
+      var req= $.ajax({
+      url: "<?= base_url('sewa/hitung_otomatis') ?>",
+      type: 'post',
+      data: {id_harga:harga,jumlah:jumlah},
+      dataType: 'json',
+      })
+      req.done(function(data) {
+        //console.log();
+      $('#biaya').val(data);
+      })
       }
-      </script>
+      var date = new Date();
+      date.setDate(date.getDate()-1);
+      $('#tgl_pinjam').datepicker({
+      minDate: date
+      });
+
+      </script> 

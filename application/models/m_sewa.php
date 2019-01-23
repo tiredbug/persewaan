@@ -31,6 +31,16 @@ class m_sewa extends CI_Model {
 		  return $kodejadi;  
 	}
 
+
+	public function ambil_harga($id_harga)
+	{
+		$this->db->select('durasi,harga')
+			->from('harga')
+			->where('id_harga',$id_harga);
+		$query=$this->db->get();
+		return  $query->row();
+	}
+
 	public function hitung($id_harga)
 	{
 		$this->db->select('harga')
@@ -38,6 +48,17 @@ class m_sewa extends CI_Model {
 			->where('id_harga',$id_harga);
 		$query=$this->db->get();
 		return  $query->row();
+	}
+
+	public function cart()
+	{
+	$this->db->select('cart.*, harga.durasi,produk.nama as nama_produk');
+    $this->db->from('cart');
+    $this->db->join('produk','produk.id_produk=cart.id_produk');
+    $this->db->join('harga','harga.id_harga=cart.id_harga');
+    $query=$this->db->get_compiled_select();
+    $data=$this->db->query($query)->result();
+		return $data;
 	}
 
 	public function tampil_sewa()
@@ -85,6 +106,17 @@ class m_sewa extends CI_Model {
     // Attempt to delete the row
     $this->db->where('id_sewa', $id);
     $this->db->delete('sewa');
+    // Was the row deleted?
+    if ($this->db->affected_rows() == 1)
+        return TRUE;
+    else
+        return FALSE;
+	}
+	public function deleteCart($id)
+	{
+    // Attempt to delete the row
+    $this->db->where('id_cart', $id);
+    $this->db->delete('cart');
     // Was the row deleted?
     if ($this->db->affected_rows() == 1)
         return TRUE;

@@ -40,21 +40,40 @@ class Sewa extends CI_Controller {
 
 	public function tampil()
 	{
-		// echo "<tr><td>tampil disini</td><td>tampil disini</td><td>tampil disini</td><td>tampil disini</td></tr>";
+		$result=$this->mod->cart();
+		 foreach ($result as $cart)
+
+		 	{echo "<tr> 
+		 <td>".$cart->nama_produk."</td>
+		 <td>".$cart->durasi."</td>
+		 <td>".$cart->harga."</td>
+		 <td>".$cart->jumlah."</td>
+		 <td>".$cart->biaya."</td>
+		 <td>".$cart->jam_pinjam."</td>
+		 <td>".$cart->jam_harus_kembali."</td>
+		 <td>".$cart->status."</td>
+		 <td><button data-id_cart='".$cart->id_cart."' type='button' onclick='hapus(this)'>hapus</button></td>
+		 </tr>";}
+
 
 	}
 	public function insertToCart()
 	{
+		$id_harga=$this->input->post('id_harga');
+		$dt_harga=$this->mod->ambil_harga($id_harga);
+		$durasi=$dt_harga->durasi;
+		$harga=$dt_harga->harga;
+		$tgl_pinjam=date('Y-m-d',strtotime($this->input->post('tgl_pinjam')))." ".$this->input->post('jam_pinjam');
+		$jam_harus_kembali = date('Y-m-d H:i:s', strtotime("+".$durasi." hours",strtotime($tgl_pinjam)));
 		$data=[
 			"id_produk"	=> $this->input->post('id_produk'),
-			"id_paket"	=> $this->input->post('id_paket'),
-			"jumlah"	=> $this->input->post('jumlah'),
-			"jam_pinjam"	=> $this->input->post('jam_pinjam'),
-			"jam_harus_kembali"	=> $this->input->post('jam_harus_kembali'),
-			"jam_pengembalian"	=> $this->input->post('jam_pengembalian'),
+			"id_harga"	=> $this->input->post('id_harga'),
+			"jam_pinjam"	=> $tgl_pinjam,
+			"harga"	=> $harga,
+			"jam_harus_kembali"	=> $jam_harus_kembali,
 			"jumlah"	=> $this->input->post('jumlah'),
 			"biaya"		=> $this->input->post('biaya'),
-			"subtotal"	=> $this->input->post('subtotal'),			
+			//"subtotal"	=> $this->input->post('biaya')*$this->input->post('jumlah'),			
 		];
 		$this->mod->tambah_cart($data);
 	}
@@ -103,6 +122,10 @@ class Sewa extends CI_Controller {
 	{
 		 $this->mod->delete($id);
 		redirect(site_url('sewa'));
+	}
+	public function deleteCart($id)
+	{
+		 $this->mod->deleteCart($id);
 	}
 }
 
